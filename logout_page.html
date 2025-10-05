@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="lg_page.css">
+  </head>
+
+  <body>
+    <header>
+      <nav class="nav-bar" id="nav-bar">
+        <div class="navbar-container">
+          <a href="#" class="logo" id="logo">TravelPlanr</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about-widget">About</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="weather.html">Weather</a></li>
+          </ul>
+
+          <div class="user-icon" id="user-icon">
+            <a href="logout_page.html">
+              <img src="/photos/images (j).png" alt="user icon"
+            /></a>
+          </div>
+
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about-widget">About</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="weather.html">Weather</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="content">
+      <h2>User Profile</h2>
+      <br />
+      <p>Name: <span id="name"></span></p>
+      <br />
+      <p>Username: <span id="username"></span></p>
+      <br />
+      <p>Email: <span id="popup-email"></span></p>
+      <br />
+      <p>Itineraries: <span id="num-itineraries"></span></p>
+      <br />
+      <p>Holiday Destinations: <span id="num-destinations">0</span></p>
+ <br>
+      <button id="logout-btn">Logout</button>
+    </div>
+
+    <section class="end">
+      <div class="container">
+        <aside class="about-widget" id="about-widget">
+          <h3>About TravelPlanr</h3>
+          <p>
+            Our platorm helps you plan and organize your trips efficiently,
+            ensuring a stress free travel experience. Whether you travel solo, a
+            couple, or a group, we're here to help you make the most of your
+            adventures.
+          </p>
+        </aside>
+
+        <aside class="useful-links">
+          <div class="ftr-links">
+            <h3>useful links</h3>
+            <ul class="links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#saved-itineraries">Itineraries</a></li>
+              <li><a href="support.html">Support</a></li>
+              <li><a href="#about-widget">About</a></li>
+              <li><a href="weather.html">Weather</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside class="popular-destinations">
+          <h3>Popular Destination</h3>
+          <ul class="countries">
+            <li>USA</li>
+            <li>Dubai</li>
+            <li>Canada</li>
+            <li>South Africa</li>
+            <li>New Zealand</li>
+          </ul>
+
+          <ul class="places">
+            <li>The Maldives</li>
+            <li>The Caribbean</li>
+            <li>The Grand Canyon</li>
+            <li>Machu Picchu</li>
+            <li>Costa Rica</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <h5>&copy; 2024 TravelPlanr</h5>
+      <p>All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Handle user info popup and logout
+      const userInfo = document.getElementById("user-icon");
+      const logoutBtn = document.getElementById("logout-btn");
+
+      // Get the current logged-in user from localStorage
+      const user = JSON.parse(localStorage.getItem("currentUser"));
+
+      // Display user info in the popup
+      if (user) {
+        document.getElementById("username").innerText = user.username;
+        document.getElementById("name").innerText = user.fullname;
+        document.getElementById("popup-email").innerText = user.email;
+      } else {
+        window.location.href = "sign_in.html"; // Redirect if no user is found
+      }
+
+      // Show the number of itineraries
+      const userId = user.username;
+      const storedItineraries = localStorage.getItem(`itineraries-${userId}`);
+      const numItineraries = storedItineraries
+        ? JSON.parse(storedItineraries).length
+        : 0;
+      document.getElementById("num-itineraries").innerText = numItineraries;
+
+
+      // Show the number of holiday destinations
+const storedDestinations = localStorage.getItem(`destinations-${userId}`);
+const numDestinations = storedDestinations
+  ? JSON.parse(storedDestinations).length
+  : 0;
+document.getElementById("num-destinations").innerText = numDestinations;
+
+
+      // Logout the current user and redirect to sign-in page
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("currentUser");
+        window.location.href = "sign_in.html";
+        popup.style.display = "none";
+      });
+
+      const hamburger = document.getElementById("hamburger");
+      const sidebar = document.getElementById("sidebar");
+      const closeBtn = document.getElementById("closeBtn");
+
+      hamburger.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+      });
+
+      // Optional: Close sidebar if user clicks outside of it
+      window.addEventListener("click", (e) => {
+        if (
+          sidebar.classList.contains("active") &&
+          !sidebar.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
+          sidebar.classList.remove("active");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("nav-bar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("sticky");
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      });
+    </script>
+  </body>
+</html>

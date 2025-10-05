@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="weather.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav class="nav-bar" id="nav-bar">
+        <div class="navbar-container">
+          <a href="#" class="logo" id="logo">TravelPlanr</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about-widget">About</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="weather.html">Weather</a></li>
+          </ul>
+
+          <div class="user-icon" id="user-icon">
+            <a href="logout_page.html">
+              <img src="/photos/images (j).png" alt="user icon"
+            /></a>
+          </div>
+
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about-widget">About</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="weather.html">Weather</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="main">
+      <div class="main-container">
+        <h1>Weather Forecast and Distance Calculator</h1>
+        <p id="main-para">
+          Here you can view weather or climate for a particular destination and
+          also <br />
+          calculate distance for a certain origin and destination.
+        </p>
+
+        <!-- <div class="weather-section">
+                <h2>Weather Forecast</h2>
+                <label for="city">Destination:</label>
+                <input type="text" id="city" placeholder="e.g State, City" /> <br />
+                <p id="weather-data" style="color: red"></p>
+                <button id="get-weather-btn">Submit</button>
+            </div> -->
+
+        <div class="weather-container">
+          <h1>🌤️ Weather Forecast</h1>
+
+          <div class="search-box">
+            <input
+              type="text"
+              id="cityInput"
+              placeholder="Enter city name..."
+            />
+            <button onclick="getWeather()">Search</button>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div id="loader" class="loader hidden"></div>
+
+          <!-- Error Message -->
+          <div id="errorMessage" class="error-message hidden"></div>
+
+          <!-- Weather Info -->
+          <div id="weatherInfo" class="weather-info hidden">
+            <div class="current-weather">
+              <h2 id="cityName">City Name</h2>
+              <div class="current-details">
+                <img id="weatherIcon" src="" alt="Weather Icon" />
+                <div>
+                  <p id="temperature">Temperature: --°C</p>
+                  <p id="description">Description: --</p>
+                  <p id="humidity">Humidity: --%</p>
+                  <p id="wind">Wind: -- km/h</p>
+                </div>
+              </div>
+            </div>
+
+            <h3>5-Day Forecast</h3>
+            <div id="forecast" class="forecast-container"></div>
+          </div>
+        </div>
+        <br />
+
+        <!-- <div class="distance-section">
+          <h2>Distance Calculation</h2>
+
+          <label for="origin">Origin:</label>
+          <input type="text" placeholder="Enter origin" id="origin" /> <br />
+
+          <label for="destination">Destination:</label>
+          <input type="text" placeholder="Enter destination" id="destination" />
+          <br />
+
+          <label for="mode">Travel Mode:</label>
+          <select id="mode">
+            <option value="drive">Driving</option>
+            <option value="walk">Walking</option>
+          </select>
+          <br />
+          <p id="distance-data"></p>
+          <button id="calc-distance-btn">Calculate Distance</button>
+        </div> -->
+
+        <div class="section" id="distance">
+          <h1>🌍 Travel Distance Calculator</h1>
+          <div class="distance-container">
+            <select id="apiChoice">
+              <option value="geoapify">Geoapify</option>
+              <option value="google">Google Maps</option>
+            </select>
+            <input id="origin" type="text" placeholder="Enter origin" />
+            <input
+              id="destination"
+              type="text"
+              placeholder="Enter destination"
+            />
+            <button onclick="calculateDistance()">Calculate Distance</button>
+            <div id="output">Enter locations above to calculate distance.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="end">
+      <div class="container">
+        <aside class="about-widget" id="about-widget">
+          <h3>About TravelPlanr</h3>
+          <p>
+            Our platorm helps you plan and organize your trips efficiently,
+            ensuring a stress free travel experience. Whether you travel solo, a
+            couple, or a group, we're here to help you make the most of your
+            adventures.
+          </p>
+        </aside>
+
+        <aside class="useful-links">
+          <div class="ftr-links">
+            <h3>useful links</h3>
+            <ul class="links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#saved-itineraries">Itineraries</a></li>
+              <li><a href="support.html">Support</a></li>
+              <li><a href="#about-widget">About</a></li>
+              <li><a href="weather.html">Weather</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside class="popular-destinations">
+          <h3>Popular Destination</h3>
+          <ul class="countries">
+            <li>USA</li>
+            <li>Dubai</li>
+            <li>Canada</li>
+            <li>South Africa</li>
+            <li>New Zealand</li>
+          </ul>
+
+          <ul class="places">
+            <li>The Maldives</li>
+            <li>The Caribbean</li>
+            <li>The Grand Canyon</li>
+            <li>Machu Picchu</li>
+            <li>Costa Rica</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <h5>&copy; 2024 TravelPlanr</h5>
+      <p>All rights reserved.</p>
+    </footer>
+
+    <!-- <script>
+      // Weather Forecast
+      const weatherAPIKey = "4eca61532dba4988a95115600252803"; // My  weather API key
+      const cityInput = document.getElementById("city");
+      const getWeatherButton = document.getElementById("get-weather-btn");
+      const weatherDataDiv = document.getElementById("weather-data");
+
+      getWeatherButton.addEventListener("click", async () => {
+        const city = cityInput.value.trim();
+        if (city) {
+          try {
+            const response = await fetch(
+              `http://api.weatherapi.com/v1/current.json?key=${weatherAPIKey}&q=${city}`
+            );
+            const data = await response.json();
+            const weatherData = `
+                <p>City: ${city}</p>
+                <p>Temperature: ${data.current.temp_c}°C</p>
+                <p>Weather: ${data.current.condition.text}</p>
+            `;
+            weatherDataDiv.innerHTML = weatherData;
+          } catch (error) {
+            weatherDataDiv.innerHTML = "Error fetching weather data.";
+            weatherDataDiv.style.color = "red"; // Highlight error in red
+
+            // Set a timeout to clear the error message after 5 seconds
+            setTimeout(() => {
+              weatherDataDiv.innerHTML = "";
+              weatherDataDiv.style.color = ""; // Reset text color
+            }, 5000); // 5000ms = 5 seconds
+          }
+        } else {
+          weatherDataDiv.innerHTML = "Input cannot be empty.";
+          weatherDataDiv.style.color = "red"; // Highlight error in red
+
+          // Set a timeout to clear the error message after 5 seconds
+          setTimeout(() => {
+            weatherDataDiv.innerHTML = "";
+            weatherDataDiv.style.color = ""; // Reset text color
+          }, 5000); // 5000ms = 5 seconds
+        }
+      });
+
+      const apiKey = "7928769c393d463b832adeed39f62e45"; // My Geoapify API key
+      const originInput = document.getElementById("origin");
+      const destinationInput = document.getElementById("destination");
+      const modeInput = document.getElementById("mode"); // Get the travel mode
+      const calculateButton = document.getElementById("calc-distance-btn");
+      const resultElement = document.getElementById("distance-data");
+
+      async function getCoordinates(location) {
+        const response = await fetch(
+          `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
+            location
+          )}&apiKey=${apiKey}`
+        );
+        const data = await response.json();
+
+        if (data.features && data.features.length > 0) {
+          return data.features[0].geometry.coordinates; // [longitude, latitude]
+        } else {
+          throw new Error(`Failed to fetch coordinates for ${location}`);
+        }
+      }
+
+      async function calculateDistance(e) {
+        e.preventDefault();
+
+        const origin = originInput.value.trim();
+        const destination = destinationInput.value.trim();
+        const mode = modeInput.value; // Get the selected travel mode
+
+        try {
+          const originCoords = await getCoordinates(origin);
+          const destinationCoords = await getCoordinates(destination);
+
+          const url = `https://api.geoapify.com/v1/routing?waypoints=${originCoords[1]},${originCoords[0]}|${destinationCoords[1]},${destinationCoords[0]}&mode=${mode}&apiKey=${apiKey}`;
+
+          const response = await fetch(url);
+          const data = await response.json();
+
+          const distance = data.features[0].properties.distance;
+          const time = data.features[0].properties.time; // Travel time in seconds
+
+          resultElement.innerText = `Mode: ${
+            mode.charAt(0).toUpperCase() + mode.slice(1)
+          }\nDistance: ${distance} meters\nEstimated Time: ${(
+            time / 60
+          ).toFixed(2)} minutes`;
+        } catch (error) {
+          resultElement.innerText =
+            "Error calculating distance. Please try again.";
+          resultElement.style.color = "red"; // Highlight error in red
+          setTimeout(() => {
+            resultElement.innerText = "";
+            resultElement.style.color = ""; // Reset text color
+          }, 5000); // 5000ms = 5 seconds
+          console.error(error);
+        }
+      }
+      calculateButton.addEventListener("click", calculateDistance);
+
+      const hamburger = document.getElementById("hamburger");
+      const sidebar = document.getElementById("sidebar");
+      const closeBtn = document.getElementById("closeBtn");
+
+      hamburger.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+      });
+
+      // Optional: Close sidebar if user clicks outside of it
+      window.addEventListener("click", (e) => {
+        if (
+          sidebar.classList.contains("active") &&
+          !sidebar.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
+          sidebar.classList.remove("active");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("nav-bar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("sticky");
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      });
+    </script> -->
+    <script>
+      /* WEATHER API */
+      const weatherApiKey = "3ca37de457034b07a227633804be565e"; // replace with your API key
+
+      async function getWeather(cityInput) {
+        const city =
+          cityInput || document.getElementById("cityInput").value.trim();
+        if (!city) return;
+
+        const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric`;
+        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherApiKey}&units=metric`;
+
+        document.getElementById("loader").classList.remove("hidden");
+        document.getElementById("errorMessage").textContent = "";
+
+        try {
+          const [currentRes, forecastRes] = await Promise.all([
+            fetch(currentWeatherUrl),
+            fetch(forecastUrl),
+          ]);
+          if (!currentRes.ok || !forecastRes.ok)
+            throw new Error("City not found.");
+          const currentData = await currentRes.json();
+          const forecastData = await forecastRes.json();
+
+          // Display current
+          document.getElementById("cityName").textContent = currentData.name;
+          document.getElementById("temperature").textContent = `${Math.round(
+            currentData.main.temp
+          )}°C`;
+          document.getElementById("description").textContent =
+            currentData.weather[0].description;
+          document.getElementById(
+            "humidity"
+          ).textContent = `Humidity: ${currentData.main.humidity}%`;
+          document.getElementById("wind").textContent = `Wind: ${Math.round(
+            currentData.wind.speed * 3.6
+          )} km/h`;
+          document.getElementById(
+            "weatherIcon"
+          ).src = `https://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`;
+
+          // Display forecast
+          const dailyMap = new Map();
+          forecastData.list.forEach((entry) => {
+            const date = entry.dt_txt.split(" ")[0];
+            if (!dailyMap.has(date) && entry.dt_txt.includes("12:00:00"))
+              dailyMap.set(date, entry);
+          });
+          const forecastContainer = document.getElementById("forecast");
+          forecastContainer.innerHTML = "";
+          for (const [date, entry] of dailyMap.entries()) {
+            const day = new Date(date).toLocaleDateString(undefined, {
+              weekday: "short",
+              month: "short",
+              day: "numeric",
+            });
+            forecastContainer.innerHTML += `
+            <div class="forecast-card">
+              <h4>${day}</h4>
+              <img src="https://openweathermap.org/img/wn/${
+                entry.weather[0].icon
+              }@2x.png"/>
+              <p>${Math.round(entry.main.temp)}°C</p>
+              <p>${entry.weather[0].main}</p>
+            </div>`;
+          }
+
+          document.getElementById("weatherInfo").classList.remove("hidden");
+        } catch (e) {
+          document.getElementById("errorMessage").textContent = e.message;
+          document.getElementById("weatherInfo").classList.add("hidden");
+        } finally {
+          document.getElementById("loader").classList.add("hidden");
+        }
+      }
+
+      /* DISTANCE API */
+      const googleApiKey = "YOUR_GOOGLE_API_KEY";
+      const geoapifyApiKey = "7928769c393d463b832adeed39f62e45";
+
+      async function geocodeGeoapify(address) {
+        const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
+          address
+        )}&apiKey=${geoapifyApiKey}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        return data.features?.[0]?.geometry.coordinates || null;
+      }
+
+      function showSpinner() {
+        document.getElementById(
+          "output"
+        ).innerHTML = `<div class="spinner"></div>`;
+      }
+
+      async function calculateDistance() {
+        const origin = document.getElementById("origin").value.trim();
+        const destination = document.getElementById("destination").value.trim();
+        const apiChoice = document.getElementById("apiChoice").value;
+        const output = document.getElementById("output");
+
+        if (!origin || !destination) {
+          output.innerText = "⚠️ Please enter both origin and destination.";
+          return;
+        }
+
+        showSpinner();
+
+        if (apiChoice === "google") {
+          // ⚠️ Needs server-side proxy because Google Distance Matrix API blocks direct fetch from frontend
+          output.innerText = "⚠️ Google API fetch requires server-side proxy.";
+        } else if (apiChoice === "geoapify") {
+          try {
+            const originCoords = await geocodeGeoapify(origin);
+            const destCoords = await geocodeGeoapify(destination);
+            if (!originCoords || !destCoords) {
+              output.innerText = "❌ Could not geocode.";
+              return;
+            }
+
+            const url = `https://api.geoapify.com/v1/routing?waypoints=${originCoords[1]},${originCoords[0]}|${destCoords[1]},${destCoords[0]}&mode=drive&apiKey=${geoapifyApiKey}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.features && data.features.length > 0) {
+              const dist =
+                (data.features[0].properties.distance / 1000).toFixed(2) +
+                " km";
+              const dur =
+                (data.features[0].properties.time / 60).toFixed(0) + " mins";
+              output.innerHTML = `✅ From ${origin} → ${destination}<br>🚗 ${dist} | ⏱️ ${dur}`;
+            } else output.innerText = "❌ Could not calculate distance.";
+          } catch {
+            output.innerText = "⚠️ Error fetching data.";
+          }
+        }
+      }
+
+      const hamburger = document.getElementById("hamburger");
+      const sidebar = document.getElementById("sidebar");
+      const closeBtn = document.getElementById("closeBtn");
+
+      hamburger.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+      });
+
+      // Optional: Close sidebar if user clicks outside of it
+      window.addEventListener("click", (e) => {
+        if (
+          sidebar.classList.contains("active") &&
+          !sidebar.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
+          sidebar.classList.remove("active");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("nav-bar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("sticky");
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      });
+    </script>
+  </body>
+</html>

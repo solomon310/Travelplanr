@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="stylesheet" href="main.css" />
+  <link rel="shortcut icon" href="photos/Logo 2.jpg" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <nav class="nav-bar" id="nav-bar">
+      <div class="navbar-container">
+        <a href="#" class="logo" id="logo">TravelPlanr</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about-widget">About</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="weather.html">Weather</a></li>
+        </ul>
+
+        <div class="user-icon" id="user-icon">
+          <a href="logout_page.html">
+            <img src="/photos/images (j).png" alt="user icon" /></a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+      <button class="close-btn" id="closeBtn">&times;</button>
+      <ul>
+        <li><a href="logout_page.html">Home</a></li>
+        <li><a href="#about-widget">About</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="weather.html">Weather</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="carousel-container">
+    <div class="carousel">
+      <div class="carousel-item">
+        <h1 class="info-heading">
+          Your adventure begins here, no paper required!
+        </h1>
+        <p class="info-txt">
+          Leave behind the hassle of handwritten notes and scattered agendas.
+          <br />
+          With our online itinerary builder, you can craft every detail of
+          your journey from the comfort of your home. <br />With just a few
+          clicks, you can curate your travel plans and get ready for
+          unforgettable experiences.
+        </p>
+        <button class="info-btn">Explore our website!</button>
+      </div>
+
+      <div class="carousel-item">
+        <h1 class="info-heading">Create your dream itinerary today!</h1>
+        <p class="info-txt">
+          Leave behind the hassle of handwritten notes and scattered agendas.
+          <br />
+          With our online itinerary builder, you can craft every detail of
+          your journey from the comfort of your home. <br />
+          Explore destinations, activities, and experiences tailored to you.
+        </p>
+        <button class="info-btn">Explore our website!</button>
+      </div>
+
+      <div class="carousel-item">
+        <h1 class="info-heading">
+          Start planning your trip now and make it unforgettable!
+        </h1>
+        <p class="info-txt">
+          Leave behind the hassle of handwritten notes and scattered agendas.
+          <br />
+          With our online itinerary builder, you can craft every detail of
+          your journey from the comfort of your home. <br />
+          Your one stop platform for planning stress-free trips.
+        </p>
+        <button class="info-btn">Explore our website!</button>
+      </div>
+    </div>
+
+    <a class="prev" onclick="prevSlide()">&#10094;</a>
+    <a class="next" onclick="nextSlide()">&#10095;</a>
+  </section>
+
+  <section class="popular-destination">
+    <h1>Popular Destinations</h1>
+    <h5>Your ultimate guide to travelling the world</h5>
+
+    <!-- Destination Cards Container -->
+    <div class="destination-container">
+      <!-- Destination 1 -->
+      <div class="card card-1">
+        <div class="card-content">
+          <h3>Port Jackson</h3>
+          <span>Harbor</span>
+          <span class="amount">$355</span>
+        </div>
+      </div>
+
+      <!-- Destination 2 -->
+      <div class="card card-2">
+        <div class="card-content">
+          <span class="txt">Beaches, Surfing</span>
+          <h3>Bondi Beach</h3>
+        </div>
+      </div>
+
+      <!-- Destination 3 -->
+      <div class="card card-3">
+        <div class="card-content">
+          <span class="txt-2">Celebration</span>
+          <h3>The Harbour</h3>
+        </div>
+      </div>
+
+      <!-- Destination 4 -->
+      <div class="card card-4">
+        <div class="card-content">
+          <span class="txt-3">Celebration</span>
+          <h3>Darling Harbour</h3>
+        </div>
+      </div>
+    </div> <br>
+
+    <div class="destination-container_2">
+      <!-- Destination 1 -->
+      <div class="card card-5">
+        <div class="card-content">
+          <h3>Port Jackson</h3>
+          <span>Harbor</span>
+          <span class="amount">$355</span>
+        </div>
+      </div>
+
+      <!-- Destination 2 -->
+      <div class="card card-6">
+        <div class="card-content">
+          <span class="txt">Beaches, Surfing</span>
+          <h3>Bondi Beach</h3>
+        </div>
+      </div>
+
+      <!-- Destination 3 -->
+      <div class="card card-7">
+        <div class="card-content">
+          <span class="txt-2">Celebration</span>
+          <h3>mount karion</h3>
+        </div>
+      </div>
+
+      <!-- Destination 4 -->
+      <div class="card card-8">
+        <div class="card-content">
+          <span class="txt-3">Celebration</span>
+          <h3>mathil fields</h3>
+        </div>
+      </div>
+    </div>
+
+    <button class="popular_btn">View all destinations</button>
+  </section>
+
+  <main>
+    <section id="map-section">
+      <h2>Map</h2>
+      <div id="map"></div>
+    </section>
+
+    <h2>itinerary form</h2>
+
+    <section id="itinerary-form">
+      <form>
+        <label for="trip-name">Travel Type:</label>
+        <!-- <input type="text" id="trip-name" name="trip-name"> <br> <br> -->
+
+        <select name="travel-type" id="trip-name">
+          <option value="select" selected>Select</option>
+          <option value="adventure trip">Adventure</option>
+          <option value="business">Business Trip</option>
+          <option value="educational">Educational Trip</option>
+          <option value="leisure">Leisure</option>
+        </select>
+
+        <label for="start-date">Check In Date:</label>
+        <input type="date" id="start-date" name="start-date" /> <br />
+        <br />
+
+        <label for="end-date">Check Out Date:</label>
+        <input type="date" id="end-date" name="end-date" /> <br />
+        <br />
+
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination" /> <br />
+        <br />
+
+        <button id="submit-btn">Create</button>
+      </form>
+
+      <div class="form_img">
+        <img src="photos/form-img.png" alt="" />
+      </div>
+    </section>
+
+    <div class="img"></div>
+
+    <section id="saved-itineraries">
+      <h2>Saved Itineraries</h2>
+      <ul id="itinerary-list"></ul>
+    </section>
+
+    <section id="holiday-destination">
+      <h2>Holiday Destinations</h2>
+      <ul id="holiday-list"></ul>
+    </section>
+  </main>
+
+  <section class="end">
+    <div class="container">
+      <aside class="about-widget" id="about-widget">
+        <h3>About TravelPlanr</h3>
+        <p>
+          Our platorm helps you plan and organize your trips efficiently,
+          ensuring a stress free travel experience. Whether you travel solo, a
+          couple, or a group, we're here to help you make the most of your
+          adventures.
+        </p>
+      </aside>
+
+      <aside class="useful-links">
+        <div class="ftr-links">
+          <h3>useful links</h3>
+          <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#saved-itineraries">Itineraries</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="#about-widget">About</a></li>
+            <li><a href="weather.html">Weather</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <aside class="popular-destinations">
+        <h3>Popular Destination</h3>
+        <ul class="countries">
+          <li>USA</li>
+          <li>Dubai</li>
+          <li>Canada</li>
+          <li>South Africa</li>
+          <li>New Zealand</li>
+        </ul>
+
+        <ul class="places">
+          <li>The Maldives</li>
+          <li>The Caribbean</li>
+          <li>The Grand Canyon</li>
+          <li>Machu Picchu</li>
+          <li>Costa Rica</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <h5>&copy; 2024 TravelPlanr</h5>
+    <p>All rights reserved.</p>
+  </footer>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0O1-1pmK8TGhY-xjz5NLjqZQuxIzQnao&libraries=places"></script>
+    <!-- AIzaSyANNOYEeEga0vi7lPMWYPcfFjKGcc6Hkls -->
+    <!-- AIzaSyDKFlRUubHUQMfh8CpBYSmNui2SiLNmNDQ -->
+  <script src="main.js"></script>
+</body>
+
+</html>

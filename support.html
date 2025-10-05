@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="support.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="nav-bar" id="nav-bar">
+        <div class="navbar-container">
+          <a href="#" class="logo" id="logo">TravelPlanr</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about-widget">About</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="weather.html">Weather</a></li>
+          </ul>
+
+          <div class="user-icon" id="user-icon">
+            <a href="logout_page.html">
+              <img src="/photos/images (j).png" alt="user icon"
+            /></a>
+          </div>
+
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about-widget">About</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="weather.html">Weather</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="main">
+      <div class="support-flex">
+        <div class="support-info">
+          <p class="sprt-para">How can we help you?</p>
+          <h2>Contact Us</h2>
+          <p class="first-para">
+            We are here to help and answer any questions you might have.
+            We look forward to hearing from you!
+          </p>
+          <div class="location">
+            <img
+              src="photos/download-location.png"
+              alt="img"
+              height="32"
+              width="32"
+            />
+            <p>52c Park Road, Eket, Akwa Ibom, Nigeria.</p>
+          </div>
+          <div class="phone">
+            <img
+              src="photos/download-phone.png"
+              alt="img"
+              height="32"
+              width="32"
+            />
+            <p><a href="tel:+2348148355898">08148355898</a></p>
+          </div>
+          <div class="mail">
+            <img
+              src="photos/download-mail.png"
+              alt="img"
+              height="32"
+              width="32"
+            />
+            <p><a href="mailto:travelplanr@info.ng">travelplanr@info.ng</a></p>
+          </div>
+        </div>
+        <div class="support-form-card">
+          <h3>Send us a message</h3>
+          <form class="support-form" id="support-form">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Type your message..."
+              required
+            ></textarea>
+            <button type="submit">Send Message</button>
+            <div
+              id="form-success"
+              style="color: #3a5a40; margin-top: 10px; display: none"
+            >
+              Thank you! We'll get back to you soon.
+            </div>
+          </form>
+        </div>
+        <!-- <div class="sprt-img">
+                    <img src="photos/support.png" alt="img">
+                </div> -->
+      </div>
+    </section>
+
+    <section class="end">
+      <div class="container">
+        <aside class="about-widget" id="about-widget">
+          <h3>About TravelPlanr</h3>
+          <p>
+            Our platorm helps you plan and organize your trips efficiently,
+            ensuring a stress free travel experience. Whether you travel solo, a
+            couple, or a group, we're here to help you make the most of your
+            adventures.
+          </p>
+        </aside>
+
+        <aside class="useful-links">
+          <div class="ftr-links">
+            <h3>useful links</h3>
+            <ul class="links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="weather.html">Weather</a></li>
+              <li><a href="support.html">Support</a></li>
+              <li><a href="#about-widget">About</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside class="popular-destinations">
+          <h3>Popular Destination</h3>
+          <ul class="countries">
+            <li>USA</li>
+            <li>Dubai</li>
+            <li>Canada</li>
+            <li>South Africa</li>
+            <li>New Zealand</li>
+          </ul>
+
+          <ul class="places">
+            <li>The Maldives</li>
+            <li>The Caribbean</li>
+            <li>The Grand Canyon</li>
+            <li>Machu Picchu</li>
+            <li>Costa Rica</li>
+          </ul>
+        </aside>
+      </div>
+
+      <!-- <div class="newsletter">
+                <p>SIGN UP NEWSLETTER</p>
+                <input type="email" id="email" placeholder="Enter your e-mail!">
+                <button id="subscribe">Subscribe</button>
+                <div id="errorPara" style="color: red;"></div>
+            </div> -->
+    </section>
+
+    <footer>
+      <h5>&copy; 2024 TravelPlanr</h5>
+      <p>All rights reserved.</p>
+    </footer>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const sidebar = document.getElementById("sidebar");
+      const closeBtn = document.getElementById("closeBtn");
+
+      hamburger.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+      });
+
+      // Optional: Close sidebar if user clicks outside of it
+      window.addEventListener("click", (e) => {
+        if (
+          sidebar.classList.contains("active") &&
+          !sidebar.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
+          sidebar.classList.remove("active");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("nav-bar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("sticky");
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      });
+    </script>
+  </body>
+</html>

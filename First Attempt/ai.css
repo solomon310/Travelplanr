@@ -1,0 +1,196 @@
+/* General Reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    user-select: none;
+}
+
+/* Navigation Bar */
+.nav-bar {
+    background-color: #0b1f3a;
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.nav-bar.scrolled {
+    background-color: #081830;
+}
+
+/* Logo */
+.nav-bar .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-bar .logo:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #f87060;
+}
+
+/* User Profile Icon */
+.user-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: wheat;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    width: 200px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dropdown-menu.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Main Section */
+.main {
+    margin: 70px auto;
+    width: 50%;
+    text-align: center;
+}
+
+/* Headings */
+h2 {
+    font-size: 2rem;
+    color: #102542;
+    padding-bottom: 10px;
+}
+
+.main p {
+    font-size: 1.2rem;
+    color: #102542;
+}
+
+/* Support Section */
+.sprt-img {
+    position: absolute;
+    top: 20%;
+    left: 70%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sprt-img:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background-color: #3d3c3c;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .dropdown-menu.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .main {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        display: none;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .newsletter input {
+        width: 90%;
+    }
+
+    .newsletter button {
+        width: 60%;
+    }
+}

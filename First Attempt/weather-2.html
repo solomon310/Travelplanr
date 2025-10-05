@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weather/distance</title>
+    <link rel="stylesheet" href="weather-2.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar" id="nav-bar">
+        <div class="navbar-container">
+          <a href="#" class="logo" id="logo">TravelPlanr</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about-widget">About</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="weather.html">Weather</a></li>
+          </ul>
+
+          <div class="user-icon" id="user-icon">
+            <a href="logout_page.html">
+              <img src="/photos/images (j).png" alt="user icon"
+            /></a>
+          </div>
+
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about-widget">About</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="weather.html">Weather</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <h1>Weather Forecast and Distance Calculator</h1>
+    <p id="main-para">
+      Here you can view weather or climate for a particular destination and also
+      <br />
+      calculate distance for a certain origin and destination.
+    </p>
+
+    <div class="weather-container">
+      <h1>🌤️ Weather Forecast</h1>
+
+      <div class="search-box">
+        <input type="text" id="cityInput" placeholder="Enter city name..." />
+        <button onclick="getWeather()">Search</button>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="loader" class="loader hidden"></div>
+
+      <!-- Error Message -->
+      <div id="errorMessage" class="error-message hidden"></div>
+
+      <!-- Weather Info -->
+      <div id="weatherInfo" class="weather-info hidden">
+        <div class="current-weather">
+          <h2 id="cityName">City Name</h2>
+          <div class="current-details">
+            <img id="weatherIcon" src="" alt="Weather Icon" />
+            <div>
+              <p id="temperature">Temperature: --°C</p>
+              <p id="description">Description: --</p>
+              <p id="humidity">Humidity: --%</p>
+              <p id="wind">Wind: -- km/h</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>5-Day Forecast</h3>
+        <div id="forecast" class="forecast-container"></div>
+      </div>
+    </div>
+
+    <div class="section" id="distance">
+      <h1>🌍 Travel Distance Calculator</h1>
+      <div class="distance-container">
+        <select id="apiChoice">
+          <option value="geoapify">Geoapify</option>
+          <option value="google">Google Maps</option>
+        </select>
+        <input id="origin" type="text" placeholder="Enter origin" />
+        <input id="destination" type="text" placeholder="Enter destination" />
+        <button onclick="calculateDistance()">Calculate Distance</button>
+        <div id="output">Enter locations above to calculate distance.</div>
+      </div>
+    </div>
+  </body>
+</html>

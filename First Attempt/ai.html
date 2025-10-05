@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather & Distance Calculator | TravelPlanr</title>
+    <link rel="stylesheet" href="weather.css">
+</head>
+
+<style>
+    /* General Reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f5f5f5;
+    user-select: none;
+}
+
+/* Navbar */
+.nav-bar {
+    background-color: #0b1f3a;
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.nav-bar.scrolled {
+    background-color: #081830;
+}
+
+/* Logo */
+.nav-bar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-bar .logo:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #f87060;
+}
+
+/* User Icon */
+.user-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Main Section */
+.main {
+    text-align: center;
+    margin: 60px auto;
+    width: 80%;
+}
+
+/* Input Fields */
+input, select {
+    width: 90%;
+    max-width: 500px;
+    height: 45px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Buttons */
+button {
+    width: 200px;
+    height: 45px;
+    background-color: #102542;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #f87060;
+}
+
+/* Ensure space between button & results */
+#distance-data {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#calc-distance-btn {
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: rgb(61, 60, 60);
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+</style>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="navbar-container">
+                <a href="index.html" class="logo" id="logo">TravelPlanr</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about-widget">About</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="weather.html">Weather</a></li>
+                </ul>
+
+                <div class="user-icon" id="user-icon" aria-label="User Profile">
+                    <img src="/photos/images (j).png" alt="User icon">
+                </div>
+
+                <div class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="main-container">
+            <h1>Weather Forecast & Distance Calculator</h1>
+            <p id="main-para">Check the weather forecast for any destination and calculate the distance between locations.</p>
+
+            <!-- Weather Forecast Section -->
+            <div class="weather-section">
+                <h2>Weather Forecast</h2>
+                <label for="city">Destination:</label>
+                <input type="text" id="city" placeholder="Enter state, city..." aria-label="Enter destination">
+                <p id="weather-data" class="error-message"></p>
+                <button id="get-weather-btn">Submit</button>
+            </div>
+
+            <!-- Distance Calculation Section -->
+            <div class="distance-section">
+                <h2>Distance Calculation</h2>
+
+                <label for="origin">Origin:</label>
+                <input type="text" id="origin" placeholder="Enter origin location" aria-label="Enter origin"> 
+
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" placeholder="Enter destination" aria-label="Enter destination"> 
+
+                <label for="mode">Travel Mode:</label>
+                <select id="mode">
+                    <option value="drive">Driving</option>
+                    <option value="walk">Walking</option>
+                    <option value="bike">Cycling</option>
+                    <option value="transit">Public Transit</option>
+                </select> 
+
+                <p id="distance-data"></p>
+                <button id="calc-distance-btn">Calculate Distance</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h5>&copy; 2024 TravelPlanr</h5>
+        <p>All rights reserved.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const userIcon = document.getElementById('user-icon');
+
+        // Toggle Mobile Navigation Menu
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Toggle User Dropdown Menu
+        userIcon.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!e.target.matches('.user-icon img')) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+</html>

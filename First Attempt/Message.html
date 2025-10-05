@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<style>
+  .no-itineraries,
+  .no-destinations {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .no-itineraries i,
+  .no-destinations i {
+    font-size: 48px;
+    color: #ccc;
+  }
+
+  .no-itineraries p,
+  .no-destinations p {
+    font-size: 18px;
+    color: #666;
+  }
+</style>
+
+<body>
+  <h1>
+    Hello, World!
+    <img src="photos/trash-bin.png" alt="">
+  </h1>
+
+  <script>
+
+    // Display "no itineraries" message
+    function displayNoItinerariesMessage() {
+      const itineraryList = document.getElementById("itinerary-list");
+      itineraryList.innerHTML = `
+    <div class="no-itineraries">
+      <i class="fas fa-trash-alt"></i>
+      <p>No Itineraries. Create an itinerary to see your plans.</p>
+    </div>
+  `;
+    }
+
+    // Display "no holiday destinations" message
+    function displayNoDestinationsMessage() {
+      const holidayList = document.getElementById("holiday-list");
+      holidayList.innerHTML = `
+    <div class="no-destinations">
+      <i class="fas fa-trash-alt"></i>
+      <p>No Destinations. Add a destination to see your holiday plans.</p>
+    </div>
+  `;
+    }
+
+    // Update loadHolidayDestinations function
+    function loadHolidayDestinations() {
+      const user = JSON.parse(localStorage.getItem("currentUser"));
+      if (user) {
+        const userId = user.username;
+        const storedDestinations = localStorage.getItem(`destinations-${userId}`);
+        if (storedDestinations) {
+          const destinations = JSON.parse(storedDestinations);
+          holidayDestinations = destinations;
+          const holidayList = document.getElementById("holiday-list");
+          holidayList.innerHTML = "";
+          if (destinations.length === 0) {
+            displayNoDestinationsMessage();
+          } else {
+            destinations.forEach((destination) => {
+              const holidayItem = document.createElement("div");
+              holidayItem.classList.add("holiday-item");
+              holidayItem.innerHTML = `
+            <h3>${destination.name}</h3>
+            <p>Latitude: ${destination.lat.toFixed(4)}, Longitude: ${destination.lng.toFixed(4)}</p>
+          `;
+              holidayList.appendChild(holidayItem);
+            });
+          }
+        } else {
+          displayNoDestinationsMessage();
+        }
+      }
+    }
+
+    // Update displayItineraries function
+    function displayItineraries() {
+      const user = JSON.parse(localStorage.getItem("currentUser"));
+      if (user) {
+        const userId = user.username;
+        const storedItineraries = localStorage.getItem(`itineraries-${userId}`);
+        const itineraryList = document.getElementById("itinerary-list");
+        if (storedItineraries) {
+          const itineraries = JSON.parse(storedItineraries);
+          itineraryList.innerHTML = "";
+          if (itineraries.length === 0) {
+            displayNoItinerariesMessage();
+          } else {
+            itineraries.forEach((itinerary, index) => {
+              const itineraryItem = document.createElement("li");
+              itineraryItem.innerHTML = `
+            <h3>${itinerary.tripName}</h3>
+            <br>
+            <p>Check In Date: ${itinerary.checkInDate}</p>
+            <br>
+            <p>Check Out Date: ${itinerary.checkOutDate}</p>
+            <br>
+            <p>Destination: ${itinerary.destination}</p>
+            <br>
+            <button class="delete-btn" data-index="${index}">Delete</button>
+          `;
+              itineraryList.appendChild(itineraryItem);
+            });
+            const deleteBtns = document.querySelectorAll(".delete-btn");
+            deleteBtns.forEach((btn) => {
+              btn.addEventListener("click", (e) => {
+                const index = e.target.dataset.index;
+                deleteItinerary(index);
+              });
+            });
+          }
+        } else {
+          displayNoItinerariesMessage();
+        }
+      }
+    }
+
+  </script>
+</body>
+
+</html>

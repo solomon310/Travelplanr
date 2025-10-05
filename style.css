@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Modernized font */
+    background-color: #f5f5f5;
+    color: white;
+    transition: background-color 0.4s ease-in-out; /* Smooth transition */
+}
+
+/* Heading */
+h1 {
+    margin: 20px auto;
+    text-align: center;
+    color: #102542;
+    font-size: 2rem; /* Slightly larger for emphasis */
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #102542;
+}
+
+/* Buttons */
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    background-color: #102542;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out; /* Smooth hover */
+}
+
+button:hover {
+    background-color: #d95645; /* Slightly darker hover effect */
+}
+
+/* Sign-Up Container */
+.sign-up-container {
+    max-width: 400px;
+    padding: 20px;
+    margin: 40px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #102542;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #102542;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out; /* Smooth interaction */
+}
+
+input:focus {
+    border-color: #102542;
+    box-shadow: 0 0 5px rgba(248, 112, 96, 0.5);
+}
+
+/* Password Container */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container img {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+/* Sign-Up Button */
+#sign-up-btn {
+    width: 100%;
+    height: 40px;
+    background-color: #102542;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#sign-up-btn:hover {
+    background: #d95645;
+}
+
+.txt {
+    text-align: center;
+    color: black;
+}
+
+#error-message{
+    text-align: center;
+}
+
+/* Loader */
+.loader {
+    border: 4px solid #f87060;
+    border-top: 4px solid #102542;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    display: none;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .sign-up-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    #sign-up-btn {
+        font-size: 16px;
+    }
+}
